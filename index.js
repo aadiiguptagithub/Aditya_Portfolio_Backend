@@ -7,10 +7,13 @@ connectDB();
 // Add body parsing middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors({
+  origin: ['https://developer-aditya-gupta.vercel.app', 'http://localhost:3000'],
+  credentials: true
+}));
 
 
-const Port=5000;
+const Port = process.env.PORT || 5000;
 const authRoutes = require('./user/auth');
 const heroRoutes = require('./routes/heroRoutes');
 const resumeRoutes = require('./routes/resumeRoutes');
